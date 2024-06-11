@@ -69,3 +69,13 @@ Built using Python and Django for the backend, with CSS and JavaScript for the f
     ```
 
 That's all you need to get started!
+
+## Screenshots
+
+![Screenshot 1](pics/1.png)
+
+![Screenshot 2](pics/2.png)
+
+![Screenshot 3](pics/3.png)
+
+![Screenshot 4](pics/4.png)
