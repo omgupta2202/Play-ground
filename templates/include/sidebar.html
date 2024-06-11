@@ -1,0 +1,15 @@
+{% load static %}
+<sidebar class="sidebar sticky" id="side-bar">
+    <p class="sidebar__open sticky" id="open-sidebar">SORTING</p>
+    <div class="sidebar__content">
+        <div class="sorting__items" id="sort-sidebar">
+            {% for tag in tags %}
+            <a href="{{ tag.get_absolute_url }}" class="sort__link">{{ tag }} ({{ tag.product_count }})</a>
+            {% endfor %}
+        </div>
+        <a href="{% url 'index' %}" class="sidebar__btn" id="sidebar-btn">Reset</a>
+        {% include 'include/pagination.html' %}
+    </div>
+</sidebar>
+<script src="{% static 'js/popupSidebar.js' %}"></script>
+

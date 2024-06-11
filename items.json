@@ -1,0 +1,446 @@
+[
+  {
+    "model": "products.item",
+    "pk": 6,
+    "fields": {
+      "name": "Starfield",
+      "tagline": "Journey Beyond the Stars",
+      "description": "Starfield is an epic space exploration game developed by Bethesda Game Studios. Players embark on a journey across the stars, discovering new worlds and engaging in space combat.",
+      "price": 5999,
+      "currency": "$",
+      "poster": "products/product_posters/image_starfield.jpg",
+      "status": "New",
+      "created": "2024-02-27T14:40:30.332Z",
+      "modified": "2024-02-27T14:40:30Z",
+      "slug": "starfield",
+      "amount": 5,
+      "type": "Game",
+      "tags": [
+        2,
+        3,
+        6,
+        7,
+        8
+      ],
+      "genre": [
+        5,
+        9
+      ],
+      "platform": [
+        2
+      ],
+      "publisher": [
+        3
+      ],
+      "developer": [
+        6
+      ],
+      "parent_game": [],
+      "series_games": []
+    }
+  },
+  {
+    "model": "products.item",
+    "pk": 7,
+    "fields": {
+      "name": "FIFA 24 Ultimate Edition",
+      "tagline": "The Game is On",
+      "description": "FIFA 24 Ultimate Edition offers the most realistic and immersive football experience to date. Enjoy the updated rosters, new gameplay mechanics, and enhanced graphics.",
+      "price": 7999,
+      "currency": "$",
+      "poster": "products/product_posters/image_fifa24.jpg",
+      "status": "New",
+      "created": "2024-03-01T14:40:30.332Z",
+      "modified": "2024-03-01T14:40:30Z",
+      "slug": "fifa-24-ultimate-edition",
+      "amount": 10,
+      "type": "Game",
+      "tags": [
+        2,
+        3,
+        7,
+        8
+      ],
+      "genre": [
+        5,
+        9
+      ],
+      "platform": [
+        3
+      ],
+      "publisher": [
+        1
+      ],
+      "developer": [
+        5
+      ],
+      "parent_game": [],
+      "series_games": []
+    }
+  },
+  {
+    "model": "products.item",
+    "pk": 8,
+    "fields": {
+      "name": "The Last of Us Part II",
+      "tagline": "Survive and Endure",
+      "description": "The Last of Us Part II is an action-adventure game developed by Naughty Dog. Follow Ellie on her journey of revenge and survival in a post-apocalyptic world.",
+      "price": 4999,
+      "currency": "$",
+      "poster": "products/product_posters/image_lastofus2.jpg",
+      "status": "New",
+      "created": "2024-04-01T14:40:30.332Z",
+      "modified": "2024-04-01T14:40:30Z",
+      "slug": "the-last-of-us-part-ii",
+      "amount": 8,
+      "type": "Game",
+      "tags": [
+        1,
+        4,
+        5,
+        6
+      ],
+      "genre": [
+        8
+      ],
+      "platform": [
+        2,
+        7
+      ],
+      "publisher": [
+        4
+      ],
+      "developer": [
+        3
+      ],
+      "parent_game": [
+        21
+      ],
+      "series_games": []
+    }
+  },
+  {
+    "model": "products.item",
+    "pk": 9,
+    "fields": {
+      "name": "Halo Infinite",
+      "tagline": "Become the Hero",
+      "description": "Halo Infinite continues the story of Master Chief and offers players an expansive world to explore, intense battles, and a rich multiplayer experience.",
+      "price": 6999,
+      "currency": "$",
+      "poster": "products/product_posters/image_halo_infinite.jpg",
+      "status": "New",
+      "created": "2024-02-27T14:40:30.332Z",
+      "modified": "2024-02-27T14:40:30Z",
+      "slug": "halo-infinite",
+      "amount": 5,
+      "type": "Game",
+      "tags": [
+        2,
+        3,
+        7,
+        8
+      ],
+      "genre": [
+        5,
+        9
+      ],
+      "platform": [
+        2,
+        3
+      ],
+      "publisher": [
+        1
+      ],
+      "developer": [
+        5
+      ],
+      "parent_game": [],
+      "series_games": []
+    }
+  },
+  {
+    "model": "products.item",
+    "pk": 15,
+    "fields": {
+      "name": "Hogwarts Legacy: Dark Arts Edition",
+      "tagline": "Enter the Wizarding World",
+      "description": "Hogwarts Legacy: Dark Arts Edition allows players to explore the wizarding world in an immersive open-world RPG. Discover spells, potions, and magical creatures.",
+      "price": 7999,
+      "currency": "$",
+      "poster": "products/product_posters/image_hogwarts_legacy.jpg",
+      "status": "New",
+      "created": "2024-02-27T14:40:30.332Z",
+      "modified": "2024-02-27T14:40:30Z",
+      "slug": "hogwarts-legacy-dark-arts-edition",
+      "amount": 6,
+      "type": "Game",
+      "tags": [
+        1,
+        4,
+        5,
+        6
+      ],
+      "genre": [
+        5,
+        7
+      ],
+      "platform": [
+        2,
+        7
+      ],
+      "publisher": [
+        8
+      ],
+      "developer": [
+        2,
+        11
+      ],
+      "parent_game": [],
+      "series_games": []
+    }
+  },
+  {
+    "model": "products.item",
+    "pk": 16,
+    "fields": {
+      "name": "Elden Ring",
+      "tagline": "Rise, Tarnished",
+      "description": "Elden Ring is an action RPG developed by FromSoftware. Players explore a vast, interconnected world filled with challenging enemies, intricate lore, and rewarding exploration.",
+      "price": 5999,
+      "currency": "$",
+      "poster": "products/product_posters/image_elden_ring.jpg",
+      "status": "New",
+      "created": "2024-02-27T14:40:30.332Z",
+      "modified": "2024-02-27T14:40:30Z",
+      "slug": "elden-ring",
+      "amount": 5,
+      "type": "Game",
+      "tags": [
+        1,
+        4,
+        5,
+        6
+      ],
+      "genre": [
+        5,
+        7
+      ],
+      "platform": [
+        2
+      ],
+      "publisher": [
+        5
+      ],
+      "developer": [
+        7
+      ],
+      "parent_game": [],
+      "series_games": []
+    }
+  },
+  {
+    "model": "products.item",
+    "pk": 17,
+    "fields": {
+      "name": "Diablo IV",
+      "tagline": "Hell Awaits",
+      "description": "Diablo IV is the latest installment in Blizzard's iconic action RPG series. Battle against the forces of evil in an expansive, dark fantasy world.",
+      "price": 6999,
+      "currency": "$",
+      "poster": "products/product_posters/image_diablo_iv.jpg",
+      "status": "New",
+      "created": "2024-02-27T14:40:30.332Z",
+      "modified": "2024-02-27T14:40:30Z",
+      "slug": "diablo-iv",
+      "amount": 5,
+      "type": "Game",
+      "tags": [
+        1,
+        5,
+        7
+      ],
+      "genre": [
+        5,
+        7
+      ],
+      "platform": [
+        2
+      ],
+      "publisher": [
+        3
+      ],
+      "developer": [
+        8
+      ],
+      "parent_game": [],
+      "series_games": []
+    }
+  },
+  {
+    "model": "products.item",
+    "pk": 18,
+    "fields": {
+      "name": "Cyberpunk 2078",
+      "tagline": "City of Dreams",
+      "description": "Cyberpunk 2078 is an open-world, action-adventure game set in the futuristic Night City. Play as V, a mercenary with a unique implant that unlocks extraordinary powers.",
+      "price": 6999,
+      "currency": "$",
+      "poster": "products/product_posters/image_cyberpunk_2078.jpg",
+      "status": "New",
+      "created": "2024-02-27T14:
+
+40:30.332Z",
+      "modified": "2024-02-27T14:40:30Z",
+      "slug": "cyberpunk-2078",
+      "amount": 7,
+      "type": "Game",
+      "tags": [
+        1,
+        2,
+        5,
+        6
+      ],
+      "genre": [
+        5,
+        7,
+        9
+      ],
+      "platform": [
+        2
+      ],
+      "publisher": [
+        4
+      ],
+      "developer": [
+        3
+      ],
+      "parent_game": [],
+      "series_games": []
+    }
+  },
+  {
+    "model": "products.item",
+    "pk": 19,
+    "fields": {
+      "name": "Grand Theft Auto VI",
+      "tagline": "Welcome to Vice City",
+      "description": "Grand Theft Auto VI takes players back to Vice City in a new action-adventure story filled with crime, excitement, and an expansive open world to explore.",
+      "price": 6999,
+      "currency": "$",
+      "poster": "products/product_posters/image_gta6.jpg",
+      "status": "New",
+      "created": "2024-02-27T14:40:30.332Z",
+      "modified": "2024-02-27T14:40:30Z",
+      "slug": "grand-theft-auto-vi",
+      "amount": 5,
+      "type": "Game",
+      "tags": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "genre": [
+        5
+      ],
+      "platform": [
+        2
+      ],
+      "publisher": [
+        2
+      ],
+      "developer": [
+        4
+      ],
+      "parent_game": [],
+      "series_games": []
+    }
+  },
+  {
+    "model": "products.item",
+    "pk": 20,
+    "fields": {
+      "name": "Borderlands 4",
+      "tagline": "Loot and Shoot",
+      "description": "Borderlands 4 brings back the shooter-looter gameplay with new Vault Hunters, worlds, and an endless array of guns to collect and enemies to defeat.",
+      "price": 5999,
+      "currency": "$",
+      "poster": "products/product_posters/image_borderlands4.jpg",
+      "status": "New",
+      "created": "2024-03-14T13:50:11.555Z",
+      "modified": "2024-03-14T13:49:24Z",
+      "slug": "borderlands-4",
+      "amount": 5,
+      "type": "Game",
+      "tags": [
+        1,
+        2,
+        4,
+        5,
+        6,
+        8
+      ],
+      "genre": [
+        5,
+        8,
+        9
+      ],
+      "platform": [
+        3,
+        7
+      ],
+      "publisher": [
+        7
+      ],
+      "developer": [
+        9
+      ],
+      "parent_game": [],
+      "series_games": []
+    }
+  },
+  {
+    "model": "products.item",
+    "pk": 21,
+    "fields": {
+      "name": "The Witcher 4: Wild Hunt",
+      "tagline": "Return to the Continent",
+      "description": "The Witcher 4: Wild Hunt continues the saga of Geralt of Rivia as he explores new lands, faces new foes, and uncovers hidden secrets in a vast open world.",
+      "price": 7999,
+      "currency": "$",
+      "poster": "products/product_posters/image_witcher4.jpg",
+      "status": "New",
+      "created": "2024-04-05T15:55:42.001Z",
+      "modified": "2024-04-05T15:51:40Z",
+      "slug": "the-witcher-4-wild-hunt",
+      "amount": 7,
+      "type": "Game",
+      "tags": [
+        1,
+        6,
+        27
+      ],
+      "genre": [
+        7,
+        8
+      ],
+      "platform": [
+        2
+      ],
+      "publisher": [
+        4
+      ],
+      "developer": [
+        3
+      ],
+      "parent_game": [
+        8
+      ],
+      "series_games": []
+    }
+  }
+]

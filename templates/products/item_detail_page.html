@@ -1,0 +1,378 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load mptt_tags %}
+{% block title %} {{ title }} {% endblock %}
+{% block content %}
+<div class="product-detail__wrapper">
+        <div class="product-detail__page">
+            <section class="product__section">
+            <div class="product__head">
+                <div class="product__poster"
+                     {% if item.poster %}
+                     style="background-image: url('{{ item.poster.url }}')"
+                     {% else %}
+                     style="background-color: gainsboro"
+                     {% endif %}
+                >
+                <div class="rating">
+                    {% if product_rating.rate__avg %}
+                        {{ product_rating.rate__avg|floatformat }}
+                        <p class="title">Pixel PL.</p>
+                    {% else %}
+                        <p class="title">Not enough reviews</p>
+                    {% endif %}
+                </div>
+                </div>
+                <div class="product__info">
+                    <p class="product__title">{{ item.name }}</p>
+                    <div class="product__rating">
+                          <a href="{% url 'reviews' item.slug %}" class="rating__link">Rate</a>
+                    </div>
+                    <ul class="product__amount">
+                       <li class="value">{{ item.get_product_in_stock }}</li>
+                    </ul>
+                    <div class="product__price">
+                        <form action="{% url 'item_detail' item.pk %}" method="POST" class="to-cart__form">
+                         {% csrf_token %}
+                        <input
+                                class="btn-primary cart {% if item.amount < 1 %}disable{% endif %}"
+                                {% if not item.amount %} disabled {% endif %}
+                                type="submit" value=" "
+                        >
+                        </form>
+                        <button
+                                type="submit"
+                                id="checkout-button"
+                                class="btn-primary {% if item.amount < 1 %}disable{% endif %}"
+                                {% if not item.amount %} disabled {% endif %}
+                        >
+                            BUY</button>
+                    {% if item.discounts.exists %}
+                          <div class="product__discount">
+                              <p class="discount">{{ item.get_discounted_price }}</p>
+                          </div>
+                          <p class="old__price">{{ item.get_price }}</p>
+                          <p class="discount__percent">-{{ item.get_percent_discount }}</p>
+                      {% else %}
+                          <div class="product__discount">
+                              <p class="regular-price">{{ item.get_price }}</p>
+                          </div>
+                    {% endif%}
+
+                    </div>
+                    <div class="product__regions">
+                        <div class="languages">
+                            <div class="select" id="languages">
+                                <p class="title">Languages</p>
+                                <p class="caret" id="caret"></p>
+                            </div>
+                            <div class="dropdown" id="languages-dropdown">
+                                {% for language in item.languages.all %}
+                                <p class="language">{{ language }}</p>
+                                <p class="language__option">{{ language.get_language_option }}</p>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <div class="regions">
+                            <p class="title">Region of activation</p>
+                            {% for activation in item.regions.all %}
+                            <p class="region">{{ activation.region }}</p>
+                            {% endfor %}
+                        </div>
+                        <div class="activation">
+                            <p class="title">Platform</p>
+                            {% for platform in item.platform.all %}
+                            <a href="{% url 'index' platform.slug %}" class="platform">{{ platform }}</a>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="product__likes">
+                <form action="{% url 'add_to_favorites' item.pk %}" method="POST">
+                {% csrf_token %}
+                <input type="hidden" name="item_id" value="{{ item.id }}">
+                <input type="image" id="favorite-img" class="favorite__img" src="https://cdn-icons-png.flaticon.com/512/535/535285.png" />
+                </form>
+                <p class="added_to_favorites">{{ added_to_favorites }} &#x2764;</p>
+            </div>
+            </section>
+            <section class="product__sub-info">
+            <div class="info">
+                <div class="genres">
+                    <p class="name">Genre</p>
+                    <p class="genre">
+                        {{ item.get_genres }}
+                    </p>
+                </div>
+                <div class="platforms">
+                    <p class="name">Platforms</p>
+                    <p class="platform">
+                    {% for platform in item.platform.all %}
+                        {{ platform }}
+                     {% endfor %}
+                    </p>
+                </div>
+                <div class="release">
+                    <p class="name">Release date</p>
+                    <p class="date">25.05.2022</p>
+                </div>
+                <div class="publishers">
+                    <p class="name">Publisher</p>
+                    {% for publisher in item.publisher.all %}
+                    <a href="{% url 'publisher' publisher.slug %}" class="publisher">{{ publisher }}</a>
+                    {% endfor %}
+                </div>
+                <div class="developers">
+                    <p class="name">Developer</p>
+                    {% for developer in item.developer.all %}
+                    <a href="{% url 'developer' developer.slug %}" class="developer">{{ developer }}</a>
+                    {% endfor %}
+                </div>
+                <div class="item__tags">
+                  {% for tag in item.tags.all %}
+                  <p class="product__tag">{{ tag }}</p>
+                  {% endfor %}
+                </div>
+            </div>
+            <div class="media__content">
+                <div class="head">
+                    <div class="switchers">
+                        <p class="title active__bar" id="screenshots-bar">SCREENSHOTS</p>
+                        <p class="title" id="trailer-bar">TRAILER</p>
+                    </div>
+                    <div class="slider__controls">
+                        <p id="left" class="fa fa-arrow-left control"></p>
+                        <p id="right" class="fa fa-arrow-right control"></p>
+                    </div>
+                </div>
+                <div class="screenshots active" id="screenshots">
+                    {% if item.screenshots.all %}
+                        {% for screenshot in item.screenshots.all %}
+                            <div class="popup">
+                                <p class="cross hide" id="screenshot-close">&#10006;</p>
+                                <img src="{{ screenshot.image.url }}"
+                                     alt="{{ screenshot.item.name }}"
+                                     class="screenshot"
+                                >
+                            </div>
+                        {% endfor %}
+                    {% else %}
+                        <div class="screenshot__placeholder">
+                            <h1 class="title">There are no screenshots available yet</h1>
+                        </div>
+                        <div class="screenshot__placeholder">
+                            <h1 class="title">There are no screenshots available yet</h1>
+                        </div>
+                    {% endif %}
+                </div>
+                <div class="trailers" id="trailer-popup">
+                    {% for trailer in item.trailers.all %}
+                    <div class="popup">
+                        <iframe src="{{ trailer.url }}" class="game__trailer"></iframe>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            </section>
+            <section class="product__about">
+                <nav class="about__navigation">
+                    <div class="left">
+                        <a href="" class="link active others__switcher">Related games</a>
+                        <a href="" class="link others__switcher">Game series</a>
+                    </div>
+                    <div class="right">
+                        <a href="" class="about__link active">ABOUT GAME</a>
+                        <a href="" class="about__link">SYSTEM REQUIREMENTS</a>
+                    </div>
+                </nav>
+                <section class="main">
+                    <div class="other__products">
+                        <section class="addons active related__games">
+                            {% if children %}
+                                {% recursetree children %}
+                                    <a href="{{ node.get_absolute_url }}" class="addon__link addon__switcher" style="background-image: url('{{ node.poster.url }}')">
+                                        <div class="addon">
+                                            <p class="title">{{ node.name }}</p>
+                                            <div class="price">
+                                                <p class="value">{{ node.get_discounted_price }}</p>
+                                                {% if node.discounts.exists %}
+                                                    <p class="discount">{{ node.get_percent_discount }}</p>
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                        <form action="{% url 'item_detail' node.pk %}" method="POST" class="to-cart__form">
+                                            {% csrf_token %}
+                                            <input class="btn-primary {% if node.amount < 1 %}disable{% endif %}" {% if not item.amount %} disabled {% endif %} type="submit" value="TO CART">
+                                        </form>
+                                        {% if node.is_leaf_node %}
+                                            <ul class="children">
+                                                {{ children.name }}
+                                            </ul>
+                                        {% endif %}
+                                    </a>
+                                {% endrecursetree %}
+                            {% elif object.get_ancestors %}
+                                {% for ancestor in object.get_ancestors %}
+                                    <a href="{{ ancestor.get_absolute_url }}" class="addon__link" style="background-image: url('{{ ancestor.poster.url }}')">
+                                        <div class="addon">
+                                            <p class="title">{{ ancestor.name }}</p>
+                                            <div class="price">
+                                                <p class="value">{{ ancestor.get_discounted_price }}</p>
+                                                {% if ancestor.discounts.exists %}
+                                                    <p class="discount">{{ ancestor.get_percent_discount }}</p>
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                        <form action="{% url 'item_detail' ancestor.pk %}" method="POST" class="to-cart__form">
+                                            {% csrf_token %}
+                                            <input class="btn-primary {% if ancestor.amount < 1 %}disable{% endif %}" {% if not item.amount %} disabled {% endif %} type="submit" value="TO CART">
+                                        </form>
+                                    </a>
+                                {% endfor %}
+                            {% else %}
+                                <section class="addons__not-found">
+                                    <h2 class="title">This game doesn't have any DLC yet</h2>
+                                </section>
+                            {% endif %}
+                        </section>
+                        {% if item.series %}
+                        <section class="series__games related__games">
+                            <a href="{{ item.series.get_absolute_url }}"
+                               style="background-image: url('{{ item.series.image.url }}')"
+                               class="addon__link"
+                            >
+                                <div class="addon">
+                                    <p class="title">{{ item.series.name }}</p>
+                                </div>
+                            </a>
+                        </section>
+                        {% endif %}
+                        <section class="others__controls">
+                            <p id="other-products-left" class="fa fa-arrow-left control"></p>
+                            <p id="other-products-right" class="fa fa-arrow-right control"></p>
+                        </section>
+                    </div>
+                    <div class="sub-info" id="product-sub-info">
+                        <div class="description" id="product-description">
+                            <h1 class="title">{{ item.get_tagline }}</h1>
+                            <p class="text">{{ item.description }}</p>
+                        </div>
+                        <div class="tech__requirements hide" id="product-requirements">
+                        <div class="requirements active" id="minimal-reqs">
+                            {% if item.minimal_system_requirements.all %}
+                                {% for minimal in item.minimal_system_requirements.all %}
+                                <div class="head">
+                                    <p class="title">Minimal system requirements</p>
+                                    <p class="caret"></p>
+                                </div>
+                                <div class="os">
+                                    <p class="name">OC</p>
+                                    <p class="value">{{ minimal.os }}</p>
+                                </div>
+                                <div class="processor">
+                                    <p class="name">Processor</p>
+                                    <p class="value">{{ minimal.processor }}</p>
+                                </div>
+                                <div class="ram">
+                                    <p class="name">RAM</p>
+                                    <p class="value">{{ minimal.ram }} GB RAM</p>
+                                </div>
+                                <div class="graphics__card">
+                                    <p class="name">Graphics Card</p>
+                                    <p class="value">{{ minimal.graphics_card }}</p>
+                                </div>
+                                <div class="direct-x">
+                                    <p class="name">DirectX</p>
+                                    <p class="value">{{ minimal.directx }}</p>
+                                </div>
+                                <div class="disk__space">
+                                    <p class="name">Disk Space</p>
+                                    <p class="value">{{ minimal.disk_space }} GB</p>
+                                </div>
+                                {% endfor %}
+                            {% else %}
+                                <div class="not-found">
+                                    <h1 class="title">This game has no minimal system requirements yet</h1>
+                                </div>
+                            {% endif %}
+                        </div>
+                        <div class="requirements" id="recommended-reqs">
+                            {% if item.minimal_system_requirements.all %}
+                                {% for minimal in item.minimal_system_requirements.all %}
+                                <div class="head">
+                                    <p class="title">Recommended system requirements</p>
+                                    <p class="caret"></p>
+                                </div>
+                                <div class="os">
+                                    <p class="name">OC</p>
+                                    <p class="value">{{ minimal.os }}</p>
+                                </div>
+                                <div class="processor">
+                                    <p class="name">Processor</p>
+                                    <p class="value">{{ minimal.processor }}</p>
+                                </div>
+                                <div class="ram">
+                                    <p class="name">RAM</p>
+                                    <p class="value">{{ minimal.ram }} GB RAM</p>
+                                </div>
+                                <div class="graphics__card">
+                                    <p class="name">Graphics Card</p>
+                                    <p class="value">{{ minimal.graphics_card }}</p>
+                                </div>
+                                <div class="direct-x">
+                                    <p class="name">DirectX</p>
+                                    <p class="value">{{ minimal.directx }}</p>
+                                </div>
+                                <div class="disk__space">
+                                    <p class="name">Disk Space</p>
+                                    <p class="value">{{ minimal.disk_space }} GB</p>
+                                </div>
+                                {% endfor %}
+                            {% else %}
+                                <div class="not-found">
+                                    <h1 class="title">This game has no recommended system requirements yet</h1>
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    </div>
+                </section>
+            </section>
+        </div>
+    </div>
+    {% csrf_token %}
+{% endblock %}
+
+{% block scripts %}
+    <script type="text/javascript">
+        const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+
+        var stripe = Stripe("{{ STRIPE_PUBLIC_KEY }}");
+        var checkoutButton = document.getElementById("checkout-button");
+        checkoutButton.addEventListener("click", function () {
+          fetch("{% url 'buy' item.id %}", {
+            method: "POST",
+            headers: {
+                'X-CSRFToken': csrftoken
+            }
+          })
+            .then(function (response) {
+              return response.json();
+            })
+            .then(function (session) {
+              return stripe.redirectToCheckout({ sessionId: session.id });
+            })
+            .then(function (result) {
+              if (result.error) {
+                alert(result.error.message);
+              }
+            })
+            .catch(function (error) {
+              console.error("Payment error:", error);
+            });
+        });
+    </script>
+    <script src="{% static 'js/ui-components.js' %}"></script>
+    <script src="{% static 'js/gameDetailPage-UI.js' %}"></script>
+{% endblock %}

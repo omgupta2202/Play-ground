@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block title %} {{ title }} {% endblock %}
+{% block content %}
+<div class="news__page">
+    <div class="content">
+        <div class="left__side">
+            <h1 class="tags__title">News</h1>
+            <div class="tags">
+                <a href="{% url 'news' %}" class="tag__link">All</a>
+                {% for tag in tags %}
+                    <a href="{% url 'tags-news' tag.slug %}" class="tag__link">{{ tag }}</a>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="right__side">
+            <h1 class="articles__title">Gaming news</h1>
+            <div class="articles">
+                {% for article in articles %}
+                <div class="card">
+                    <img src="{{ article.image }}" alt="{{ article.title }}-image" class="article__image">
+                    <div class="main">
+                        <a href="{{ article.url }}" target="_blank" class="article__link">{{ article.title }}</a>
+                        <p class="article__created">{{ article.created_at|date:"SHORT_DATE_FORMAT"}}</p>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+

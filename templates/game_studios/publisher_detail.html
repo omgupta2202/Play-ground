@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container">
+    <div class="publisher__card">
+    {% if publisher.image %}
+    <img src="{{ publisher.image.url }}" alt="" class="publisher__img">
+    {% endif %}
+    <h1 class="publisher__title">{{ publisher.name }}</h1>
+    <p class="publisher__description">{{ publisher.description }}</p>
+    </div>
+</div>
+{% endblock %}
