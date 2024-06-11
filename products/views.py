@@ -61,7 +61,7 @@ class IndexPageView(DevelopersPublishers, ListView):
         genres = Genre.objects.all()
         total_games = Item.objects.values('id').count()
         game_series = Series.objects.all()
-        title = 'Pixel Playground'
+        title = 'Play-ground'
         regions = Region.objects.all()
 
         search_query = self.request.GET.get('q')
